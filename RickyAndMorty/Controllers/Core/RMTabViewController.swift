@@ -29,7 +29,7 @@ final class RMTabViewController: UITabBarController {
         let nav2 = UINavigationController(rootViewController: locationsVC)
         let nav3 = UINavigationController(rootViewController: episodesVC)
         let nav4 = UINavigationController(rootViewController: settingsVC)
-
+        let 
         nav1.tabBarItem = UITabBarItem(title: "Characters",
                                        image: UIImage(systemName: "person"),
                                        tag: 1)
