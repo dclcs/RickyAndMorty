@@ -42,7 +42,6 @@ final class RMService {
             // Decode response
             do {
                 let result = try JSONDecoder().decode(type.self, from: data)
-                print("result is \(result)")
                 completion(.success(result))
                 //
             }
