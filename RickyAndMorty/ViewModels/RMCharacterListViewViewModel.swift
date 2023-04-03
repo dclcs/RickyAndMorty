@@ -23,8 +23,8 @@ final class RMCharacterListViewViewModel: NSObject {
     
     private var characters: [RMCharacter] = [] {
         didSet {
-            print("[update] cellViewModels before: \(cellViewModels.count)")
-            print("[update] characters before: \(characters.count)")
+//            print("[update] cellViewModels before: \(cellViewModels.count)")
+//            print("[update] characters before: \(characters.count)")
             for character in characters
             {
                 let viewModel = RMCharacterCollectionViewCellViewModel(
@@ -36,8 +36,8 @@ final class RMCharacterListViewViewModel: NSObject {
                     cellViewModels.append(viewModel)
                 }
             }
-            print("[update] characters after: \(characters.count)")
-            print("[update] cellViewModels after: \(cellViewModels.count)")
+//            print("[update] characters after: \(characters.count)")
+//            print("[update] cellViewModels after: \(cellViewModels.count)")
         }
     }
     
@@ -86,13 +86,13 @@ final class RMCharacterListViewViewModel: NSObject {
                 let newCount = moreResults.count
                 let total = originalCount + newCount
                 let startingIndex = total - newCount
-                debugPrint("[update] startingIndex: \(startingIndex)")
+//                debugPrint("[update] startingIndex: \(startingIndex)")
                 let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex + newCount)).compactMap({
                     return IndexPath(row: $0, section: 0)
                 })
-                debugPrint("[update] indexPathsToAdd: \(indexPathsToAdd)")
+//                debugPrint("[update] indexPathsToAdd: \(indexPathsToAdd)")
                 self.characters.append(contentsOf: moreResults)
-                debugPrint("[update] characters count: \(self.characters.count)")
+//                debugPrint("[update] characters count: \(self.characters.count)")
                 DispatchQueue.main.async {
                     self.delegate?.didLoadMoreCharacters(with: indexPathsToAdd)
                     self.isLoadingMoreCharacters = false
@@ -166,7 +166,7 @@ extension RMCharacterListViewViewModel: UIScrollViewDelegate {
               let nextUrlString = apiInfo?.next,
               let url = URL(string: nextUrlString)
         else { return }
-        /// TODO: Fix this
+        // TODO: - Fix this
 //        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {[weak self] t in
 //            guard let self = self else { return }
 //            let offset = scrollView.contentOffset.y
