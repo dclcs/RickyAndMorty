@@ -12,6 +12,7 @@ final class RMEpisodeDetailViewController: UIViewController {
 
     private let viewModel: RMEpisodeDetailViewViewModel
     
+    private let detailView =  RMEpisodeDetailView()
     // MARK: - Init
     
     init(url: URL?) {
@@ -27,7 +28,22 @@ final class RMEpisodeDetailViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Episode"
-        view.backgroundColor = .systemGreen
+        view.addSubview(detailView)
+        title = "HEpisode"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
+    }
+    
+    @objc private func didTapShare() {
+        
+    }
+    
+    private func addConstraints() {
+        NSLayoutConstraint.activate([
+            detailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            detailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            detailView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            detailView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+        ])
     }
 }
