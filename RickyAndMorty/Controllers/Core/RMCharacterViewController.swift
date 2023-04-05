@@ -8,7 +8,7 @@
 import UIKit
 
 /// Controller to search for Characters
-class RMCharacterViewController: UIViewController {
+final class RMCharacterViewController: UIViewController {
 
     private let characterListView = RMCharacterListView()
     
