@@ -9,10 +9,10 @@ import UIKit
 
 /// VC to show details about single episode
 final class RMEpisodeDetailViewController: UIViewController {
-
     private let viewModel: RMEpisodeDetailViewViewModel
     
-    private let detailView =  RMEpisodeDetailView()
+    private var detailView: RMEpisodeDetailView = RMEpisodeDetailView()
+    
     // MARK: - Init
     
     init(url: URL?) {
@@ -28,10 +28,12 @@ final class RMEpisodeDetailViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(detailView)
+        view.addSubViews(detailView)
+        addConstraints()
         title = "HEpisode"
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
+        viewModel.delegate = self
+        viewModel.fetchEpisodeData()
     }
     
     @objc private func didTapShare() {
@@ -41,9 +43,17 @@ final class RMEpisodeDetailViewController: UIViewController {
     private func addConstraints() {
         NSLayoutConstraint.activate([
             detailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            detailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            detailView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             detailView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            detailView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            detailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
+}
+
+extension RMEpisodeDetailViewController: RMEpisodeDetailViewViewModelDelegate {
+    
+    func didFinishEpisodeDetails() {
+        detailView.configure(with: viewModel)
+    }
+    
 }
