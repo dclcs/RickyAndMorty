@@ -32,6 +32,7 @@ final class RMEpisodeDetailViewController: UIViewController {
         addConstraints()
         title = "HEpisode"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
+        detailView.delegate = self
         viewModel.delegate = self
         viewModel.fetchEpisodeData()
     }
@@ -55,5 +56,17 @@ extension RMEpisodeDetailViewController: RMEpisodeDetailViewViewModelDelegate {
     func didFinishEpisodeDetails() {
         detailView.configure(with: viewModel)
     }
+    
+}
+
+
+extension RMEpisodeDetailViewController: RMEpisodeDetailViewDelegate {
+    func rmEpisodeDetailView(_ detailView: RMEpisodeDetailView, didSelect character: RMCharacter) {
+        let vc = RMCharacterDetailViewController(viewModel: .init(character: character))
+        vc.title = character.name
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
 }
