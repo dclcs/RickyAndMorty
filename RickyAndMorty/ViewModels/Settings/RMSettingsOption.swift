@@ -16,6 +16,25 @@ enum RMSettingsOption: CaseIterable {
     case viewSeries
     case viewCode
     
+    var targetUrl: URL? {
+        switch self {
+        case .rateApp:
+            return nil
+        case .contactUs:
+            return URL(string: "https://www.baidu.com")
+        case .terms:
+            return URL(string: "https://www.baidu.com/terms")
+        case .privacy:
+            return URL(string: "https://www.baidu.com/privacy")
+        case .apiReference:
+            return URL(string: "https://www.baidu.com/apiRefernce")
+        case .viewSeries:
+            return URL(string: "https://www.baidu.com/viewSeries")
+        case .viewCode:
+            return URL(string: "https://www.baidu.com/viewCode")
+        }
+    }
+    
     var displayTitle: String {
         switch self {
         case .rateApp:
